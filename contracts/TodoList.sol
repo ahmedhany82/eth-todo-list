@@ -4,7 +4,7 @@ contract TodoList {
     uint public taskCount = 0;
 
     constructor() public {
-        creatTask("Learn Solidity");
+        createTask("Learn Solidity");
     }
 
     struct Task {
@@ -13,11 +13,19 @@ contract TodoList {
         bool completed;
     }
 
+    event TaskCreated(
+        uint id,
+        string content,
+        bool completed
+    );
+
     mapping(uint => Task) public tasks;
 
-    function creatTask(string memory _content) public {
+    function createTask(string memory _content) public {
         taskCount++;
         tasks[taskCount] = Task(taskCount, _content, false);
+        emit TaskCreated(taskCount, _content, false);
     }
 }
+
 

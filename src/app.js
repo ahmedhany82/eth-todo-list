@@ -78,6 +78,8 @@ App = {
       // Set the current blockchain account
       //App.account = web3.eth.accounts[0]
       const accounts = await ethereum.request({ method: 'eth_accounts' });
+      App.account = accounts[0];
+      web3.defaultAccount = accounts[0]
       console.log(accounts[0])
     },
   
@@ -146,6 +148,13 @@ App = {
         $newTaskTemplate.show()
       }
     },
+
+    createTask: async () => {
+        App.setLoading(true)
+        const content = $('#newTask').val()
+        await App.todoList.createTask(content, {from: web3.defaultAccount})
+        window.location.reload()
+      },
   
     setLoading: (boolean) => {
       App.loading = boolean
