@@ -48,6 +48,12 @@ module.exports = {
     //  network_id: "*",       // Any network (default: none)
     // },
 
+      development: {
+        host: "127.0.0.1",
+        port: 7545,
+        network_id: "*" // Match any network id
+      }
+
     // Another network with more advanced options...
     // advanced: {
       // port: 8777,             // Custom port
@@ -95,5 +101,13 @@ module.exports = {
       //  evmVersion: "byzantium"
       // }
     }
+  },
+
+  solc: {
+    optimizer: {
+      enabled: true,
+      runs: 200
+    }
   }
+
 }
